@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multiple.data.sources.mapper.sys.SysUserMapper">
+    <insert id="insertSelective" parameterType="com.multiple.data.sources.domain.sys.SysUser">
+       insert into sys_user (user_name, password) values (#{userName}, #{password})
+   </insert>
+</mapper>

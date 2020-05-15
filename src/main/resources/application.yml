@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: springBoot-multipleDataSources
+  #druid数据源相关配置配置
+  datasource:
+    sys:
+      url: jdbc:mysql://123.206.19.217:3306/system?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false
+      username: root
+      password: lzq199528
+      driverClassName: com.mysql.cj.jdbc.Driver
+    base:
+      url: jdbc:mysql://123.206.19.217:3306/base_data?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false
+      username: root
+      password: lzq199528
+      driverClassName: com.mysql.cj.jdbc.Driver
+
+    #连接池的配置信息
+    pool:
+      initialSize: 10
+      minIdle: 5
+      maxActive: 20
+      maxWait: 600
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      validationQueryTimeout: 1000
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+#mybatis 配置信息
+mybatis:
+  type-aliases-package: com.multiple.data.sources.domain.**
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mappers/**/*.xml

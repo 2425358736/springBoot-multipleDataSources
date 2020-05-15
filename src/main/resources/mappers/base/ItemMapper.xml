@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multiple.data.sources.mapper.base.ItemMapper">
+    <insert id="insertSelective" parameterType="com.multiple.data.sources.domain.base.Item">
+       insert into item (item_key, item_value) values (#{itemKey}, #{itemValue})
+   </insert>
+</mapper>
