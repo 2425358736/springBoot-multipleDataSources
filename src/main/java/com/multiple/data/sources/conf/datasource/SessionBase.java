@@ -14,13 +14,14 @@ import javax.sql.DataSource;
 
 /**
  * @author admin
+ * com.multiple.data.sources.mapper.base 目录下的走base数据源
  */
 @Configuration
 @MapperScan(basePackages = {"com.multiple.data.sources.mapper.base"},sqlSessionFactoryRef = "dataBaseSqlSessionFactory")
 public class SessionBase {
 
     /**
-     * 返回data1数据库的会话工厂
+     * 返回base数据库的会话工厂
      * @param ds
      * @return
      * @throws Exception
@@ -39,7 +40,7 @@ public class SessionBase {
     }
 
     /**
-     * 返回data1数据库的会话模板
+     * 返回base数据库的会话模板
      * @param sessionFactory
      * @return
      */

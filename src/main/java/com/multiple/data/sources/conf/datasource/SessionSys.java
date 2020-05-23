@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -16,12 +15,13 @@ import javax.sql.DataSource;
 
 /**
  * @author admin
+ * com.multiple.data.sources.mapper.sys 目录下的 走sys
  */
 @Configuration
 @MapperScan(basePackages = {"com.multiple.data.sources.mapper.sys"},sqlSessionFactoryRef = "dataSysSqlSessionFactory")
 public class SessionSys {
     /**
-     * 返回data1数据库的会话工厂
+     * 返回sys数据库的会话工厂
      * @param ds
      * @return
      * @throws Exception
@@ -40,7 +40,7 @@ public class SessionSys {
         return bean.getObject();
     }
     /**
-     * 返回data1数据库的会话模板
+     * 返回sys数据库的会话模板
      * @param sessionFactory
      * @return
      */
