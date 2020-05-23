@@ -13,8 +13,8 @@ import javax.transaction.UserTransaction;
  */
 @Configuration
 public class JtaTransactionManagerConfig {
-    @Bean(name = "xatx")
-    public JtaTransactionManager regTransactionManager () {
+    @Bean(name = "jtaTransactionManager")
+    public JtaTransactionManager jtaTransactionManager () {
         UserTransactionManager userTransactionManager = new UserTransactionManager();
         UserTransaction userTransaction = new UserTransactionImp();
         return new JtaTransactionManager(userTransaction, userTransactionManager);

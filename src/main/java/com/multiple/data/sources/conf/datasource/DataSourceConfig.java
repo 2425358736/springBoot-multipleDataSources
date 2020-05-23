@@ -1,7 +1,9 @@
 package com.multiple.data.sources.conf.datasource;
 
+import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -67,5 +69,17 @@ public class DataSourceConfig {
         prop.put("minEvictableIdleTimeMillis", env.getProperty(prefixPool + "minEvictableIdleTimeMillis", Integer.class));
         prop.put("filters", env.getProperty(prefixPool + "filters"));
         return prop;
+    }
+
+    /**
+     * +定义配置文件
+     * @return MybatisProperties
+     */
+    @Bean(name = "mybatisData")
+    @ConfigurationProperties(prefix = "mybatis")
+    @Primary
+    public MybatisProperties mybatisProperties() {
+        MybatisProperties mybatisProperties = new MybatisProperties();
+        return mybatisProperties;
     }
 }
