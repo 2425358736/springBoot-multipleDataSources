@@ -24,4 +24,9 @@ public class TestController {
     private String multiSourceOperation() {
         return testService.multiSourceOperation();
     }
+
+    @GetMapping("/multiSourceOperation2")
+    private String multiSourceOperation2() {
+        return testService.multiSourceOperation2();
+    }
 }

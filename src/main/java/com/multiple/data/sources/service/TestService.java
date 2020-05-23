@@ -10,4 +10,10 @@ public interface TestService {
      * @return
      */
     String multiSourceOperation();
+
+    /**
+     * 测试多库操作
+     * @return
+     */
+    String multiSourceOperation2();
 }

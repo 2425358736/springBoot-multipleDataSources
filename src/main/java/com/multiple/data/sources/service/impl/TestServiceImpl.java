@@ -41,4 +41,20 @@ public class TestServiceImpl implements TestService {
         log.info(String.valueOf(i[2]));
         return "测试失败，观察数据库结果";
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public String multiSourceOperation2() {
+        SysUser sysUser = new SysUser();
+        sysUser.setUserName("刘志强");
+        sysUser.setPassword("123456");
+        sysUserMapper.insertSelective(sysUser);
+
+        Item item = new Item();
+        item.setItemKey("key");
+        item.setItemValue("value");
+        itemMapper.insertSelective(item);
+
+        return "测试成功，观察数据库结果";
+    }
 }
