@@ -43,12 +43,12 @@ spring:
   #druid数据源相关配置配置
   datasource:
     sys:
-      url: jdbc:mysql://123.206.19.217:3306/system?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false
+      url: jdbc:mysql://123.206.19.217:3306/system?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false&autoReconnect=true&pinGlobalTxToPhysicalConnection=true
       username: root
       password: lzq199528
       driverClassName: com.mysql.cj.jdbc.Driver
     base:
-      url: jdbc:mysql://123.206.19.217:3306/base_data?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false
+      url: jdbc:mysql://123.206.19.217:3306/base_data?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useSSL=false&autoReconnect=true&pinGlobalTxToPhysicalConnection=true
       username: root
       password: lzq199528
       driverClassName: com.mysql.cj.jdbc.Driver
