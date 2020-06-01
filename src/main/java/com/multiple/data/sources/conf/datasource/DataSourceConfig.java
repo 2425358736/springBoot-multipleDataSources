@@ -26,7 +26,10 @@ public class DataSourceConfig {
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
         ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
         ds.setUniqueResourceName("sys");
-        ds.setPoolSize(5);
+        ds.setMinPoolSize(10);
+        ds.setMaxPoolSize(20);
+        ds.setMaintenanceInterval(28000);
+        ds.setTestQuery("SELECT 1");
         ds.setXaProperties(build("spring.datasource.sys."));
         return ds;
     }
@@ -36,7 +39,10 @@ public class DataSourceConfig {
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
         ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
         ds.setUniqueResourceName("base");
-        ds.setPoolSize(5);
+        ds.setMinPoolSize(10);
+        ds.setMaxPoolSize(20);
+        ds.setMaintenanceInterval(28000);
+        ds.setTestQuery("SELECT 1");
         ds.setXaProperties(build("spring.datasource.base."));
         return ds;
     }

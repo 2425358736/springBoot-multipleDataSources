@@ -55,14 +55,14 @@ spring:
 
     #连接池的配置信息
     pool:
-      initialSize: 10
-      minIdle: 5
+      initialSize: 5
+      minIdle: 10
       maxActive: 20
-      maxWait: 600
+      maxWait: 6000
       timeBetweenEvictionRunsMillis: 60000
-      minEvictableIdleTimeMillis: 300000
-      validationQuery: SELECT 1 FROM DUAL
-      validationQueryTimeout: 1000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: SELECT 1
+      validationQueryTimeout: 10000
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
@@ -137,7 +137,10 @@ public class DataSourceConfig {
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
         ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
         ds.setUniqueResourceName("sys");
-        ds.setPoolSize(5);
+        ds.setMinPoolSize(10);
+        ds.setMaxPoolSize(20);
+        ds.setMaintenanceInterval(28000);
+        ds.setTestQuery("SELECT 1");
         ds.setXaProperties(build("spring.datasource.sys."));
         return ds;
     }
@@ -147,7 +150,10 @@ public class DataSourceConfig {
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
         ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
         ds.setUniqueResourceName("base");
-        ds.setPoolSize(5);
+        ds.setMinPoolSize(10);
+        ds.setMaxPoolSize(20);
+        ds.setMaintenanceInterval(28000);
+        ds.setTestQuery("SELECT 1");
         ds.setXaProperties(build("spring.datasource.base."));
         return ds;
     }
@@ -382,3 +388,24 @@ public class DruidConfig {
 ### 使用  @Transactional(rollbackFor = Exception.class) 声明事务
 
 ### http://localhost:8080/druid 进入druid可视化web网页查看sql及数据源信息
+
+
+### 出现的问题
+
+#### 1. 每8个小时不访问，数据库机会丢掉链接
+##### 解决方案： 定时任务没四小时查询下所有的库
+
+
+
+#### 2. XA resource 'recruit': resume for XID '3137322E31372E302E342E746D313539303731373435353934393030343835:3137322E31372E302E342E746D353030' raised -7: the XA resource has become unavailable".原因应该是连接池资源不够用，应该是过期的xa没有释放连接数导致的。
+
+##### 解决方案： 设置  Atomikos 数据源 的 维护时间 
+
+```
+        ds.setMaintenanceInterval(28000);
+        ds.setTestQuery("SELECT 1");
+```
+
+
+
+

@@ -16,14 +16,14 @@ spring:
 
     #连接池的配置信息
     pool:
-      initialSize: 10
-      minIdle: 5
+      initialSize: 5
+      minIdle: 10
       maxActive: 20
-      maxWait: 600
+      maxWait: 6000
       timeBetweenEvictionRunsMillis: 60000
-      minEvictableIdleTimeMillis: 300000
-      validationQuery: SELECT 1 FROM DUAL
-      validationQueryTimeout: 1000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: SELECT 1
+      validationQueryTimeout: 10000
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
